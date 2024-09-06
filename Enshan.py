@@ -18,7 +18,7 @@ def send_message(content):
         "appToken": "AT_Jsii9rLkDRpw7WWkhqZN1oNXIH8hHhqP",
         "content": content,
         "contentType": 1,
-        "topicIds": [32226]
+        "topicIds": [33380]
     }
     response = requests.post(api_url, headers=headers, data=json.dumps(data))
     return response.json()
