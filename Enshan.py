@@ -9,15 +9,29 @@ from lxml import etree
 
 cookie = os.environ.get("cookie_enshan")
 
+def send_message(content):
+    api_url = 'https://wxpusher.zjiecode.com/api/send/message'
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    data = {
+        "appToken": "AT_Jsii9rLkDRpw7WWkhqZN1oNXIH8hHhqP",
+        "content": content,
+        "contentType": 1,
+        "topicIds": [32226]
+    }
+    response = requests.post(api_url, headers=headers, data=json.dumps(data))
+    return response.json()
+
 def run(*arg):
     msg = ""
     s = requests.Session()
-    s.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0'})
+    s.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0'})
 
     # 签到
     url = "https://www.right.com.cn/forum/home.php?mod=spacecp&ac=credit&op=log&suboperation=creditrulelog"
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0',
         'Connection' : 'keep-alive',
         'Host' : 'www.right.com.cn',
         'Upgrade-Insecure-Requests' : '1',
@@ -54,6 +68,8 @@ def main(*arg):
         msg += run(cookie)
         i += 1
     print(msg[:-1])
+    log = send_message(msg)
+    print(log)
     return msg[:-1]
 
 
