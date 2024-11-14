@@ -63,7 +63,6 @@ if __name__ == "__main__":
     if cookie:
         print("----------恩山论坛开始尝试签到----------")
         msg = ""
-        global cookie
         if "\\n" in cookie:
             clist = cookie.split("\\n")
         else:
