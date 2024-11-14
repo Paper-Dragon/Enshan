@@ -19,7 +19,7 @@ def send_message(content):
     response = requests.post(api_url, headers=headers, data=json.dumps(data))
     return response.json()
 
-def run(*arg):
+def run(cookie):
     msg = ""
     s = requests.Session()
     s.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0'})
@@ -51,6 +51,7 @@ def run(*arg):
             h = etree.HTML(r.text)
             data = h.xpath('//tr/td[6]/text()')
             msg += f'签到成功或今日已签到，最后签到时间：{data[0]}'
+            print(msg)
         else:
             msg += '签到失败，可能是cookie失效了！'
             print(send_message(msg))
